@@ -10,15 +10,17 @@ import android.view.ViewGroup;
 
 import com.example.news.R;
 
-public class HomeFragment extends Fragment {
+public class BusinessFragment extends Fragment {
 
-    public HomeFragment() {
+
+    public BusinessFragment() {
         // Required empty public constructor
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_home, container, false);
+
+        return inflater.inflate(R.layout.fragment_business, container, false);
     }
 }

@@ -7,12 +7,13 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="lightWhite">#F2F2F2</color>
     <color name="beige">#F1ECC3</color>
-    <color name="greenShade">#57837B</color>
     <color name="beigeShade">#FCFFA6</color>
-    <color name="yellowShade">#FFEF78</color>
+    <color name="goldenYellow">#FFDF00</color>
+    <color name="schoolBusYellow">#FFD800</color>
+    <color name="yellowShade">#FFDE03</color>
     <color name="darkGrey">#121212</color>
     <color name="lightGrey">#212121</color>
-    <color name="lighterGrey">#323232</color>
-    <color name="mainBackground">#79FDD835</color>
+    <color name="lighterGrey">#505050</color>
 </resources>
