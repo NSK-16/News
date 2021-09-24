@@ -2,16 +2,21 @@ package com.example.news.fragments;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.news.R;
+import com.example.news.activity.MainActivity;
 
 public class HealthFragment extends Fragment {
-
+    RecyclerView rvHealth;
     public HealthFragment() {
         // Required empty public constructor
     }
@@ -22,5 +27,13 @@ public class HealthFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         return inflater.inflate(R.layout.fragment_health, container, false);
+    }
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        rvHealth = view.findViewById(R.id.rvHome);
+        rvHealth.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        ((MainActivity)getActivity()).fetchNews(rvHealth,"general");
     }
 }

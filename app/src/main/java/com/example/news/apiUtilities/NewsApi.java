@@ -7,5 +7,11 @@ import retrofit2.http.Query;
 public interface NewsApi {
     String BASE_URL = "https://newsapi.org/v2/";
     @GET("top-headlines")
-    Call<NewsArticles> getNews(@Query("country") String country, @Query("apiKey") String API_KEY);
+    Call<NewsArticles> getNews(
+            @Query("country") String country,
+            @Query("category") String category,
+            @Query("pageSize") int pagesize,
+            @Query("apiKey") String API_KEY
+    );
+
 }
