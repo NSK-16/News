@@ -27,10 +27,9 @@ public class MainActivity extends AppCompatActivity{
     TabLayout tabLayout;
     ViewPager2 viewPager2;
     NewsPagerAdapter newsPagerAdapter;
-    List<NewsModelClass> mNews = new ArrayList<>();
     String[] tabTitles = new String[]{"HOME","BUSINESS","HEALTH","TECHNOLOGY","SPORTS"};
 
-    String API_KEY = "ba88d060a3e049ca9fa46f2bea0d52c4";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,7 +68,7 @@ public class MainActivity extends AppCompatActivity{
                 tabLayout.selectTab(tabLayout.getTabAt(position));
             }
         });
-//
+
 //    private void fetchNews() {
 //        Call<NewsArticles> call = RetrofitClient.getInstance().getMyApi().getNews("in",API_KEY);
 //        call.enqueue(new Callback<NewsArticles>() {

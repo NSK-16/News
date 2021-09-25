@@ -12,9 +12,6 @@ import com.example.news.fragments.HomeFragment;
 import com.example.news.fragments.SportsFragment;
 import com.example.news.fragments.TechnologyFragment;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class NewsPagerAdapter extends FragmentStateAdapter {
 
     public NewsPagerAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle) {
