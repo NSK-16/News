@@ -43,31 +43,36 @@
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/tbItemHome">
+            android:id="@+id/tbItemHome"
+            android:text="HOME">
         </com.google.android.material.tabs.TabItem>
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/tbItemBusiness">
+            android:id="@+id/tbItemBusiness"
+            android:text="BUSINESS">
         </com.google.android.material.tabs.TabItem>
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/tbItemHealth">
+            android:id="@+id/tbItemHealth"
+            android:text="HEALTH">
         </com.google.android.material.tabs.TabItem>
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/tbItemTechnology">
+            android:id="@+id/tbItemTechnology"
+            android:text="TECHNOLOGY">
         </com.google.android.material.tabs.TabItem>
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/tbItemSports">
+            android:id="@+id/tbItemSports"
+            android:text="SPORTS">
         </com.google.android.material.tabs.TabItem>
 
 

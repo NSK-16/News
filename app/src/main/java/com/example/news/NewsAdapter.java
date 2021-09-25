@@ -1,4 +1,4 @@
-package com.example.news.adapters;
+package com.example.news;
 
 import android.net.Uri;
 import android.view.LayoutInflater;
@@ -12,7 +12,6 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.news.R;
 import com.example.news.apiUtilities.NewsModelClass;
 
 import java.util.List;
@@ -79,8 +78,6 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
     {
         void onNewsClick(int position);
     }
-
-
 
 }
 
