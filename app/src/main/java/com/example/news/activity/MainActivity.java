@@ -3,47 +3,32 @@ package com.example.news.activity;
 //TODO: * Add the individual fragments,viewpager and tab layout
 //      * Beautify the app and support dark mode
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.browser.customtabs.CustomTabColorSchemeParams;
-import androidx.browser.customtabs.CustomTabsIntent;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
-import android.graphics.Color;
-import android.net.Uri;
 import android.os.Bundle;
-import android.widget.Toast;
+import android.view.View;
 
-import com.example.news.NewsAdapter;
-import com.example.news.apiUtilities.NewsArticles;
-import com.example.news.apiUtilities.NewsModelClass;
+import com.example.news.adapters.NewsAdapter;
 import com.example.news.R;
-import com.example.news.apiUtilities.RetrofitClient;
+import com.example.news.adapters.NewsPagerAdapter;
+import com.example.news.apiUtilities.NewsModelClass;
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
-public class MainActivity extends AppCompatActivity implements NewsAdapter.NewsItemClickListener {
+public class MainActivity extends AppCompatActivity{
     Toolbar toolbar;
     TabLayout tabLayout;
-    TabItem tbItemHome,tbItemBusiness,tbItemTechnology,tbItemHealth,tbItemSports;
     ViewPager2 viewPager2;
-    NewsAdapter newsAdapter;
-
-
-
-
-//    List<NewsModelClass> mNews = new ArrayList<>();
-//    NewsAdapter mNewsAdapter;
-//    RecyclerView recyclerView;
+    NewsPagerAdapter newsPagerAdapter;
+    List<NewsModelClass> mNews = new ArrayList<>();
+    String[] tabTitles = new String[]{"HOME","BUSINESS","HEALTH","TECHNOLOGY","SPORTS"};
 
     String API_KEY = "ba88d060a3e049ca9fa46f2bea0d52c4";
     @Override
@@ -53,20 +38,37 @@ public class MainActivity extends AppCompatActivity implements NewsAdapter.NewsI
 
         toolbar = findViewById(R.id.tbCustom);
         tabLayout = findViewById(R.id.tlCategories); setSupportActionBar(toolbar);
-        tbItemHome = findViewById(R.id.tbItemHome);
-        tbItemBusiness = findViewById(R.id.tbItemBusiness);
-        tbItemHealth = findViewById(R.id.tbItemHealth);
-        tbItemTechnology = findViewById(R.id.tbItemTechnology);
-        tbItemSports = findViewById(R.id.tbItemSports);
 
+        viewPager2 = findViewById(R.id.vpNews);
+        newsPagerAdapter = new NewsPagerAdapter(getSupportFragmentManager(),getLifecycle());
+        viewPager2.setAdapter(newsPagerAdapter);
 
-//
-//        recyclerView = findViewById(R.id.rvNewsArticles);
-//        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-//        fetchNews();
-//
-//
-//    }
+        new TabLayoutMediator(tabLayout, viewPager2, (tab, position) -> tab.setText(tabTitles[position])).attach();
+
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager2.setCurrentItem(tab.getPosition());
+                newsPagerAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+
+        viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position) {
+                tabLayout.selectTab(tabLayout.getTabAt(position));
+            }
+        });
 //
 //    private void fetchNews() {
 //        Call<NewsArticles> call = RetrofitClient.getInstance().getMyApi().getNews("in",API_KEY);
@@ -91,24 +93,6 @@ public class MainActivity extends AppCompatActivity implements NewsAdapter.NewsI
 //        });
 //
 //
-//    }
 //
-//    @Override
-//    public void onNewsClick(int position) {
-//        NewsModelClass newsItem = mNews.get(position);
-//        String newsUrl = newsItem.getUrl();
-//
-//        CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
-//
-//        int colorInt = Color.parseColor("#F1ECC3");
-//        CustomTabColorSchemeParams defaultColors = new CustomTabColorSchemeParams.Builder()
-//                .setToolbarColor(colorInt)
-//                .build();
-//        builder.setDefaultColorSchemeParams(defaultColors);
-//
-//        CustomTabsIntent customTabsIntent = builder.build();
-//        customTabsIntent.launchUrl(this, Uri.parse(newsUrl));
-//
-//    }
     }
 }
