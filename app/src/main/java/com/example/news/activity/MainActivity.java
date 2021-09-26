@@ -1,32 +1,23 @@
 package com.example.news.activity;
 
-//TODO: * Add the individual fragments,viewpager and tab layout
-//      * Beautify the app and support dark mode
+//TODO: * Beautify the app and support dark mode
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager2.widget.ViewPager2;
-
 import android.os.Bundle;
-import android.view.View;
-
-import com.example.news.adapters.NewsAdapter;
 import com.example.news.R;
 import com.example.news.adapters.NewsPagerAdapter;
-import com.example.news.apiUtilities.NewsModelClass;
-import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity{
     Toolbar toolbar;
     TabLayout tabLayout;
     ViewPager2 viewPager2;
     NewsPagerAdapter newsPagerAdapter;
+    TabLayoutMediator tabLayoutMediator;
     String[] tabTitles = new String[]{"HOME","BUSINESS","HEALTH","TECHNOLOGY","SPORTS"};
 
 
@@ -42,7 +33,9 @@ public class MainActivity extends AppCompatActivity{
         newsPagerAdapter = new NewsPagerAdapter(getSupportFragmentManager(),getLifecycle());
         viewPager2.setAdapter(newsPagerAdapter);
 
-        new TabLayoutMediator(tabLayout, viewPager2, (tab, position) -> tab.setText(tabTitles[position])).attach();
+
+        tabLayoutMediator = new TabLayoutMediator(tabLayout, viewPager2, (tab, position) -> tab.setText(tabTitles[position]));
+        tabLayoutMediator.attach();
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -69,29 +62,12 @@ public class MainActivity extends AppCompatActivity{
             }
         });
 
-//    private void fetchNews() {
-//        Call<NewsArticles> call = RetrofitClient.getInstance().getMyApi().getNews("in",API_KEY);
-//        call.enqueue(new Callback<NewsArticles>() {
-//            @Override
-//            public void onResponse(Call<NewsArticles> call, Response<NewsArticles> response) {
-//                if(response.isSuccessful()) {
-//                    if (!mNews.isEmpty()) {
-//                        mNews.clear();
-//                    }
-//                    mNews=response.body().getArticles();
-//                    mNewsAdapter = new NewsAdapter(MainActivity.this::onNewsClick,mNews);
-//                    recyclerView.setAdapter(mNewsAdapter);
-//                    mNewsAdapter.notifyDataSetChanged();
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<NewsArticles> call, Throwable t) {
-//                Toast.makeText(getApplicationContext(),"Something is wrong",Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//
-//
-//
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        tabLayoutMediator.detach();
+        viewPager2.setAdapter(null);
     }
 }

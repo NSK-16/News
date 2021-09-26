@@ -17,7 +17,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.news.R;
-import com.example.news.activity.MainActivity;
 import com.example.news.apiUtilities.NewsModelClass;
 
 import java.util.List;
@@ -71,7 +70,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
     }
 
 
-    public class NewsViewHolder extends RecyclerView.ViewHolder {
+    public static class NewsViewHolder extends RecyclerView.ViewHolder {
         ImageView articleImage;
         TextView title, author;
         CardView cardView;
