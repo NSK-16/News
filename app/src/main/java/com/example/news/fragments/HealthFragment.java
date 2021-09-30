@@ -45,14 +45,16 @@ public class HealthFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
     {
-        return inflater.inflate(R.layout.fragment_health, container, false);
+        View v = inflater.inflate(R.layout.fragment_health, container, false);
+        recyclerView = v.findViewById(R.id.rvHealth);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        return v;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        recyclerView = view.findViewById(R.id.rvHealth);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
         newsAdapter = new NewsAdapter(getContext(),healthNews);
         recyclerView.setAdapter(newsAdapter);
         fetchNews();
@@ -65,10 +67,7 @@ public class HealthFragment extends Fragment {
         recyclerView.setAdapter(null);
     }
 
-    @Override
-    public void onDetach() {
-        super.onDetach();
-    }
+
 
     private void fetchNews()
     {

@@ -24,12 +24,11 @@ public class NewsPagerAdapter extends FragmentStateAdapter {
     public Fragment createFragment(int position) {
         switch (position)
         {
-            case 0: return new HomeFragment();
             case 1: return new BusinessFragment();
             case 2: return new HealthFragment();
             case 3: return new TechnologyFragment();
             case 4: return new SportsFragment();
-            default: return null;
+            default: return new HomeFragment();
         }
     }
 

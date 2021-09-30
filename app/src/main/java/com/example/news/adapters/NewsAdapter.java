@@ -39,10 +39,16 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull NewsViewHolder holder, int position) {
+
+        NewsModelClass currentNewsItem = allNews.get(position);
+        holder.title.setText(currentNewsItem.getTitle());
+        holder.author.setText(currentNewsItem.getAuthor());
+        if (currentNewsItem.getUrlToImage() != null)
+            Glide.with(holder.itemView.getContext()).load(Uri.parse(currentNewsItem.getUrlToImage())).into(holder.articleImage);
+
         holder.cardView.setOnClickListener(v -> {
 
-            NewsModelClass newsItem = allNews.get(position);
-            String newsUrl = newsItem.getUrl();
+            String newsUrl = currentNewsItem.getUrl();
 
             CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
 
@@ -56,11 +62,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
             customTabsIntent.launchUrl(context, Uri.parse(newsUrl));
         });
 
-        NewsModelClass currentNewsItem = allNews.get(position);
-        holder.title.setText(currentNewsItem.getTitle());
-        holder.author.setText(currentNewsItem.getAuthor());
-        if (currentNewsItem.getUrlToImage() != null)
-            Glide.with(holder.itemView.getContext()).load(Uri.parse(currentNewsItem.getUrlToImage())).into(holder.articleImage);
+
 
     }
 

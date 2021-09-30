@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity{
         viewPager2.setAdapter(newsPagerAdapter);
 
 
+
         tabLayoutMediator = new TabLayoutMediator(tabLayout, viewPager2, (tab, position) -> tab.setText(tabTitles[position]));
         tabLayoutMediator.attach();
 
@@ -41,7 +42,7 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 viewPager2.setCurrentItem(tab.getPosition());
-                newsPagerAdapter.notifyDataSetChanged();
+
             }
 
             @Override
@@ -58,7 +59,13 @@ public class MainActivity extends AppCompatActivity{
         viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageSelected(int position) {
+                super.onPageSelected(position);
                 tabLayout.selectTab(tabLayout.getTabAt(position));
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+                super.onPageScrollStateChanged(state);
             }
         });
 

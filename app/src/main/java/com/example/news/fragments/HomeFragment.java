@@ -55,14 +55,16 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
     {
-        return inflater.inflate(R.layout.fragment_home, container, false);
+        View v = inflater.inflate(R.layout.fragment_home, container, false);
+        recyclerView = v.findViewById(R.id.rvHome);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        return v;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        recyclerView = view.findViewById(R.id.rvHome);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
         newsAdapter = new NewsAdapter(getContext(),homeNews);
         recyclerView.setAdapter(newsAdapter);
         fetchNews();
