@@ -1,6 +1,7 @@
 package com.example.news.activity;
 
 //TODO: * Beautify the app and support dark mode
+//      * Fetch news
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;

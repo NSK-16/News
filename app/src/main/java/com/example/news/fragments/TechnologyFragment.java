@@ -55,16 +55,14 @@ public class TechnologyFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
     {
-        View v = inflater.inflate(R.layout.fragment_technology, container, false);
-        recyclerView = v.findViewById(R.id.rvTechnology);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        return v;
+        return inflater.inflate(R.layout.fragment_technology, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+        recyclerView = view.findViewById(R.id.rvTechnology);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         newsAdapter = new NewsAdapter(getContext(), technologyNews);
         recyclerView.setAdapter(newsAdapter);
         fetchNews();
@@ -81,8 +79,8 @@ public class TechnologyFragment extends Fragment {
                     if (!technologyNews.isEmpty()) {
                         technologyNews.clear();
                     }
-                    technologyNews =response.body().getArticles();
-                    newsAdapter.notifyDataSetChanged();
+                    technologyNews.addAll(response.body().getArticles());
+                    newsAdapter.UpdateNews(technologyNews);
                 }
             }
 

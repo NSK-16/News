@@ -43,16 +43,15 @@ public class BusinessFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_business, container, false);
-        recyclerView = v.findViewById(R.id.rvBusiness);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        return v;
+        return inflater.inflate(R.layout.fragment_business, container, false);
+
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+        recyclerView = view.findViewById(R.id.rvBusiness);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         newsAdapter = new NewsAdapter(getContext(),businessNews);
         recyclerView.setAdapter(newsAdapter);
         fetchNews();
@@ -80,8 +79,8 @@ public class BusinessFragment extends Fragment {
                     if (!businessNews.isEmpty()) {
                         businessNews.clear();
                     }
-                    businessNews=response.body().getArticles();
-                    newsAdapter.notifyDataSetChanged();
+                    businessNews.addAll(response.body().getArticles());
+                    newsAdapter.UpdateNews(businessNews);
                 }
             }
 

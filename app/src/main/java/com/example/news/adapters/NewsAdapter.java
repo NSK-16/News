@@ -19,6 +19,7 @@ import com.bumptech.glide.Glide;
 import com.example.news.R;
 import com.example.news.apiUtilities.NewsModelClass;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder> {
@@ -85,6 +86,11 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
             cardView = itemView.findViewById(R.id.cardView);
 
         }
+    }
+    public void UpdateNews(List<NewsModelClass> updatedNews)
+    {
+        this.allNews = updatedNews;
+        notifyDataSetChanged();
     }
 }
 
