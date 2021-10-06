@@ -1,9 +1,9 @@
 # News
-News App made with *Retrofit API* and *Glide Library* in *Android Studio* that shows news of India under various categories :- General, Business, Health, Technology, Sports
+News App made with **Retrofit Client** and **Glide Library** in **Android Studio** that shows top headlines from India,that are fetch using **NEWSAPI.ORG**, under various categories :- *General, Business, Health, Technology, Sports*
 
-WHAT I HAVE LEARNT:
-
+### **WHAT I HAVE LEARNT**
 * Viewpager2 and TabLayout
+* How APIs are used
 * Glide Library
-* Retrofit API
+* Retrofit Client
 * Chrome CustomTabIntents
