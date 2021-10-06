@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.news.R;
@@ -37,8 +38,9 @@ public class SportsFragment extends Fragment {
     }
 
     String category = "sports";
-    int pageSize = 50;
+    int pageSize = 100;
     private RecyclerView recyclerView;
+    private ProgressBar progressBar;
     NewsAdapter newsAdapter;
     final String API_KEY = "ba88d060a3e049ca9fa46f2bea0d52c4";
 
@@ -60,6 +62,8 @@ public class SportsFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         recyclerView = view.findViewById(R.id.rvSports);
+        progressBar = view.findViewById(R.id.pbLoading);
+        progressBar.setVisibility(View.VISIBLE);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         newsAdapter = new NewsAdapter(getContext(), sportsNews);
         recyclerView.setAdapter(newsAdapter);
@@ -84,6 +88,7 @@ public class SportsFragment extends Fragment {
                     }
                     sportsNews.addAll(response.body().getArticles());
                     newsAdapter.UpdateNews(sportsNews);
+                    progressBar.setVisibility(View.GONE);
                 }
             }
 

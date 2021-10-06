@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.news.R;
@@ -32,18 +33,21 @@ public class HomeFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         recyclerView.setAdapter(null);
+        progressBar.setVisibility(View.GONE);
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
+        progressBar.setVisibility(View.INVISIBLE);
     }
 
     private List<NewsModelClass> homeNews = new ArrayList<>();
     String country = "in";
     String category = "general";
-    int pageSize = 50;
+    int pageSize = 100;
     private RecyclerView recyclerView;
+    private ProgressBar progressBar;
     NewsAdapter newsAdapter;
     final String API_KEY = "ba88d060a3e049ca9fa46f2bea0d52c4";
 
@@ -62,6 +66,8 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        progressBar = view.findViewById(R.id.pbLoading);
+        progressBar.setVisibility(View.VISIBLE);
         recyclerView = view.findViewById(R.id.rvHome);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         newsAdapter = new NewsAdapter(getContext(),homeNews);
@@ -71,7 +77,7 @@ public class HomeFragment extends Fragment {
 
     private void fetchNews()
     {
-         Call<NewsArticles> call = RetrofitClient.getInstance().getMyApi().getNews(country,pageSize,category,API_KEY);
+        Call<NewsArticles> call = RetrofitClient.getInstance().getMyApi().getNews(country,pageSize,category,API_KEY);
         call.enqueue(new Callback<NewsArticles>() {
             @Override
             public void onResponse(@NonNull Call<NewsArticles> call, @NonNull Response<NewsArticles> response) {
@@ -81,6 +87,7 @@ public class HomeFragment extends Fragment {
                     }
                     homeNews.addAll(response.body().getArticles());
                     newsAdapter.UpdateNews(homeNews);
+                    progressBar.setVisibility(View.GONE);
                 }
             }
 
