@@ -1,90 +1,81 @@
 package com.example.news.activity;
 
-//TODO: * Add the individual fragments,viewpager and tab layout
-//      * Beautify the app and support dark mode
+//TODO: * Add a progress bar
+//      * Show "No Internet Connection" message when applicable
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.browser.customtabs.CustomTabColorSchemeParams;
-import androidx.browser.customtabs.CustomTabsIntent;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.graphics.Color;
-import android.net.Uri;
+import androidx.appcompat.widget.Toolbar;
+import androidx.viewpager2.widget.ViewPager2;
 import android.os.Bundle;
-import android.widget.Toast;
-
-import com.example.news.NewsAdapter;
-import com.example.news.apiUtilities.NewsArticles;
-import com.example.news.apiUtilities.NewsModelClass;
 import com.example.news.R;
-import com.example.news.apiUtilities.RetrofitClient;
+import com.example.news.adapters.NewsPagerAdapter;
+import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
 
-import java.util.ArrayList;
-import java.util.List;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+public class MainActivity extends AppCompatActivity{
+    Toolbar toolbar;
+    TabLayout tabLayout;
+    ViewPager2 viewPager2;
+    NewsPagerAdapter newsPagerAdapter;
+    TabLayoutMediator tabLayoutMediator;
+    String[] tabTitles = new String[]{"HOME","BUSINESS","HEALTH","TECHNOLOGY","SPORTS"};
 
-public class MainActivity extends AppCompatActivity implements NewsAdapter.NewsItemClickListener {
-    List<NewsModelClass> mNews = new ArrayList<>();
-    NewsAdapter mNewsAdapter;
-    RecyclerView recyclerView;
 
-    String API_KEY = "ba88d060a3e049ca9fa46f2bea0d52c4";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        recyclerView = findViewById(R.id.rvNewsArticles);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        fetchNews();
+        toolbar = findViewById(R.id.tbCustom);
+        tabLayout = findViewById(R.id.tlCategories); setSupportActionBar(toolbar);
+
+        viewPager2 = findViewById(R.id.vpNews);
+        newsPagerAdapter = new NewsPagerAdapter(getSupportFragmentManager(),getLifecycle());
+        viewPager2.setAdapter(newsPagerAdapter);
 
 
-    }
 
-    private void fetchNews() {
-        Call<NewsArticles> call = RetrofitClient.getInstance().getMyApi().getNews("in",API_KEY);
-        call.enqueue(new Callback<NewsArticles>() {
+        tabLayoutMediator = new TabLayoutMediator(tabLayout, viewPager2, (tab, position) -> tab.setText(tabTitles[position]));
+        tabLayoutMediator.attach();
+
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
-            public void onResponse(Call<NewsArticles> call, Response<NewsArticles> response) {
-                if(response.isSuccessful()) {
-                    if (!mNews.isEmpty()) {
-                        mNews.clear();
-                    }
-                    mNews=response.body().getArticles();
-                    mNewsAdapter = new NewsAdapter(MainActivity.this::onNewsClick,mNews);
-                    recyclerView.setAdapter(mNewsAdapter);
-                    mNewsAdapter.notifyDataSetChanged();
-                }
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager2.setCurrentItem(tab.getPosition());
+
             }
 
             @Override
-            public void onFailure(Call<NewsArticles> call, Throwable t) {
-                Toast.makeText(getApplicationContext(),"Something is wrong",Toast.LENGTH_SHORT).show();
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
             }
         });
 
+        viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position) {
+                super.onPageSelected(position);
+                tabLayout.selectTab(tabLayout.getTabAt(position));
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+                super.onPageScrollStateChanged(state);
+            }
+        });
 
     }
 
     @Override
-    public void onNewsClick(int position) {
-        NewsModelClass newsItem = mNews.get(position);
-        String newsUrl = newsItem.getUrl();
-
-        CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
-        
-        int colorInt = Color.parseColor("#F1ECC3");
-        CustomTabColorSchemeParams defaultColors = new CustomTabColorSchemeParams.Builder()
-                .setToolbarColor(colorInt)
-                .build();
-        builder.setDefaultColorSchemeParams(defaultColors);
-        
-        CustomTabsIntent customTabsIntent = builder.build();
-        customTabsIntent.launchUrl(this, Uri.parse(newsUrl));
-
+    protected void onDestroy() {
+        super.onDestroy();
+        tabLayoutMediator.detach();
+        viewPager2.setAdapter(null);
     }
 }

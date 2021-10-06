@@ -20,7 +20,6 @@ import com.example.news.apiUtilities.NewsArticles;
 import com.example.news.apiUtilities.NewsModelClass;
 import com.example.news.apiUtilities.RetrofitClient;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,30 +27,29 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class HomeFragment extends Fragment {
+public class TechnologyFragment extends Fragment {
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         recyclerView.setAdapter(null);
-        progressBar.setVisibility(View.GONE);
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
-        progressBar.setVisibility(View.INVISIBLE);
     }
 
-    private List<NewsModelClass> homeNews = new ArrayList<>();
+    private List<NewsModelClass> technologyNews = new ArrayList<>();
     String country = "in";
-    String category = "general";
+    String category = "technology";
     int pageSize = 100;
     private RecyclerView recyclerView;
     private ProgressBar progressBar;
     NewsAdapter newsAdapter;
     final String API_KEY = "ba88d060a3e049ca9fa46f2bea0d52c4";
 
-    public HomeFragment() {
+    public TechnologyFragment() {
         // Required empty public constructor
     }
 
@@ -59,20 +57,20 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
     {
-        return inflater.inflate(R.layout.fragment_home, container, false);
+        return inflater.inflate(R.layout.fragment_technology, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+        recyclerView = view.findViewById(R.id.rvTechnology);
         progressBar = view.findViewById(R.id.pbLoading);
         progressBar.setVisibility(View.VISIBLE);
-        recyclerView = view.findViewById(R.id.rvHome);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        newsAdapter = new NewsAdapter(getContext(),homeNews);
+        newsAdapter = new NewsAdapter(getContext(), technologyNews);
         recyclerView.setAdapter(newsAdapter);
         fetchNews();
+
     }
 
     private void fetchNews()
@@ -82,11 +80,11 @@ public class HomeFragment extends Fragment {
             @Override
             public void onResponse(@NonNull Call<NewsArticles> call, @NonNull Response<NewsArticles> response) {
                 if(response.isSuccessful()) {
-                    if (!homeNews.isEmpty()) {
-                        homeNews.clear();
+                    if (!technologyNews.isEmpty()) {
+                        technologyNews.clear();
                     }
-                    homeNews.addAll(response.body().getArticles());
-                    newsAdapter.UpdateNews(homeNews);
+                    technologyNews.addAll(response.body().getArticles());
+                    newsAdapter.UpdateNews(technologyNews);
                     progressBar.setVisibility(View.GONE);
                 }
             }

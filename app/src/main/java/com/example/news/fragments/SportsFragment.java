@@ -20,7 +20,6 @@ import com.example.news.apiUtilities.NewsArticles;
 import com.example.news.apiUtilities.NewsModelClass;
 import com.example.news.apiUtilities.RetrofitClient;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,51 +27,53 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class HomeFragment extends Fragment {
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        recyclerView.setAdapter(null);
-        progressBar.setVisibility(View.GONE);
-    }
+public class SportsFragment extends Fragment {
+
+    private List<NewsModelClass> sportsNews = new ArrayList<>();
+    String country = "in";
 
     @Override
     public void onDetach() {
         super.onDetach();
-        progressBar.setVisibility(View.INVISIBLE);
     }
 
-    private List<NewsModelClass> homeNews = new ArrayList<>();
-    String country = "in";
-    String category = "general";
+    String category = "sports";
     int pageSize = 100;
     private RecyclerView recyclerView;
     private ProgressBar progressBar;
     NewsAdapter newsAdapter;
     final String API_KEY = "ba88d060a3e049ca9fa46f2bea0d52c4";
 
-    public HomeFragment() {
+    public SportsFragment() {
         // Required empty public constructor
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
     {
-        return inflater.inflate(R.layout.fragment_home, container, false);
+        return inflater.inflate(R.layout.fragment_sports, container, false);
+
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        recyclerView = view.findViewById(R.id.rvSports);
         progressBar = view.findViewById(R.id.pbLoading);
         progressBar.setVisibility(View.VISIBLE);
-        recyclerView = view.findViewById(R.id.rvHome);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        newsAdapter = new NewsAdapter(getContext(),homeNews);
+        newsAdapter = new NewsAdapter(getContext(), sportsNews);
         recyclerView.setAdapter(newsAdapter);
         fetchNews();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        recyclerView.setAdapter(null);
     }
 
     private void fetchNews()
@@ -82,11 +83,11 @@ public class HomeFragment extends Fragment {
             @Override
             public void onResponse(@NonNull Call<NewsArticles> call, @NonNull Response<NewsArticles> response) {
                 if(response.isSuccessful()) {
-                    if (!homeNews.isEmpty()) {
-                        homeNews.clear();
+                    if (!sportsNews.isEmpty()) {
+                        sportsNews.clear();
                     }
-                    homeNews.addAll(response.body().getArticles());
-                    newsAdapter.UpdateNews(homeNews);
+                    sportsNews.addAll(response.body().getArticles());
+                    newsAdapter.UpdateNews(sportsNews);
                     progressBar.setVisibility(View.GONE);
                 }
             }
