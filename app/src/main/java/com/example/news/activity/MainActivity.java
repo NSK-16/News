@@ -1,7 +1,7 @@
 package com.example.news.activity;
 
-//TODO: * Beautify the app and support dark mode
-//      * Fetch news
+//TODO: * Add a progress bar
+//      * Show "No Internet Connection" message when applicable
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
