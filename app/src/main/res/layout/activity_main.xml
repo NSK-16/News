@@ -5,21 +5,50 @@
     android:layout_height="match_parent"
     android:background="?background">
 
-    <TextView
-        android:id="@+id/title_view"
+    <GridLayout
+        android:id="@+id/titleBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="12dp"
-        android:text="NEWS"
-        android:textColor="#fff"
-        android:textSize="50sp"
-        android:textStyle="bold" />
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="20dp">
+
+        <TextView
+            android:id="@+id/title_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:layout_gravity="fill_horizontal"
+            android:text="NEWS"
+            android:textColor="#fff"
+            android:textSize="50sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/bSearch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="0"
+            android:layout_column="1"
+            android:drawableLeft="@drawable/ic_bookmarks"
+            android:text="Bookmarks"
+            android:onClick="bookMarksClicked"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+    </GridLayout>
 
     <GridLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/title_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/titleBar"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
         android:layout_margin="20dp"
         android:columnCount="2"
         android:rowCount="3">
@@ -33,11 +62,11 @@
             android:layout_column="0"
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
+            android:clickable="true"
+            android:onClick="homeClicked"
             app:cardCornerRadius="8dp"
             app:cardElevation="8dp"
-            app:cardUseCompatPadding="true"
-            android:clickable="true"
-            android:onClick="homeClicked">
+            app:cardUseCompatPadding="true">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -54,10 +83,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
                     android:text="HOME"
                     android:textAlignment="center"
-                    android:textStyle="bold"
-                    android:gravity="center_horizontal" />
+                    android:textStyle="bold" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
@@ -69,11 +98,11 @@
             android:layout_column="1"
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
+            android:clickable="true"
+            android:onClick="entertainmentClicked"
             app:cardCornerRadius="8dp"
             app:cardElevation="8dp"
-            app:cardUseCompatPadding="true"
-            android:clickable="true"
-            android:onClick="entertainmentClicked">
+            app:cardUseCompatPadding="true">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -90,10 +119,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
                     android:text="ENTERTAINMENT"
                     android:textAlignment="center"
-                    android:textStyle="bold"
-                    android:gravity="center_horizontal" />
+                    android:textStyle="bold" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
@@ -105,11 +134,11 @@
             android:layout_column="0"
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
+            android:clickable="true"
+            android:onClick="techClicked"
             app:cardCornerRadius="8dp"
             app:cardElevation="8dp"
-            app:cardUseCompatPadding="true"
-            android:clickable="true"
-            android:onClick="techClicked">
+            app:cardUseCompatPadding="true">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -126,10 +155,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
                     android:text="TECHNOLOGY"
                     android:textAlignment="center"
-                    android:textStyle="bold"
-                    android:gravity="center_horizontal" />
+                    android:textStyle="bold" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
@@ -141,11 +170,11 @@
             android:layout_column="1"
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
+            android:clickable="true"
+            android:onClick="healthClicked"
             app:cardCornerRadius="8dp"
             app:cardElevation="8dp"
-            app:cardUseCompatPadding="true"
-            android:clickable="true"
-            android:onClick="healthClicked">
+            app:cardUseCompatPadding="true">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -162,10 +191,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
                     android:text="HEALTH"
                     android:textAlignment="center"
-                    android:textStyle="bold"
-                    android:gravity="center_horizontal" />
+                    android:textStyle="bold" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
@@ -178,11 +207,11 @@
             android:layout_column="0"
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
+            android:clickable="true"
+            android:onClick="businessClicked"
             app:cardCornerRadius="8dp"
             app:cardElevation="8dp"
-            app:cardUseCompatPadding="true"
-            android:clickable="true"
-            android:onClick="businessClicked">
+            app:cardUseCompatPadding="true">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -199,10 +228,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
                     android:text="BUSINESS"
                     android:textAlignment="center"
-                    android:textStyle="bold"
-                    android:gravity="center_horizontal" />
+                    android:textStyle="bold" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
@@ -214,11 +243,11 @@
             android:layout_column="1"
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
+            android:clickable="true"
+            android:onClick="sportsClicked"
             app:cardCornerRadius="8dp"
             app:cardElevation="8dp"
-            app:cardUseCompatPadding="true"
-            android:clickable="true"
-            android:onClick="sportsClicked">
+            app:cardUseCompatPadding="true">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -235,10 +264,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
                     android:text="SPORTS"
                     android:textAlignment="center"
-                    android:textStyle="bold"
-                    android:gravity="center_horizontal" />
+                    android:textStyle="bold" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
     </GridLayout>

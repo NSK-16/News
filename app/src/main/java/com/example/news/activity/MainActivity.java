@@ -47,7 +47,6 @@ public class MainActivity extends AppCompatActivity{
 			Intent intent = new Intent(MainActivity.this, NewsActivity.class);
 			intent.putExtra("type",'D');
 			startActivity(intent);
-			finish();
 		}
 
 	}
@@ -69,7 +68,6 @@ public class MainActivity extends AppCompatActivity{
 			Intent intent = new Intent(MainActivity.this, NewsActivity.class);
 			intent.putExtra("type",'T');
 			startActivity(intent);
-			finish();
 		}
 	}
 
@@ -90,7 +88,6 @@ public class MainActivity extends AppCompatActivity{
 			Intent intent = new Intent(MainActivity.this, NewsActivity.class);
 			intent.putExtra("type",'E');
 			startActivity(intent);
-			finish();
 		}
 	}
 
@@ -111,7 +108,6 @@ public class MainActivity extends AppCompatActivity{
 			Intent intent = new Intent(MainActivity.this, NewsActivity.class);
 			intent.putExtra("type",'S');
 			startActivity(intent);
-			finish();
 		}
 	}
 
@@ -131,7 +127,6 @@ public class MainActivity extends AppCompatActivity{
 		else{
 			Intent intent = new Intent(MainActivity.this, NewsActivity.class);
 			intent.putExtra("type",'H');
-			finish();
 		}
 	}
 
@@ -152,7 +147,26 @@ public class MainActivity extends AppCompatActivity{
 			Intent intent = new Intent(MainActivity.this, NewsActivity.class);
 			intent.putExtra("type",'B');
 			startActivity(intent);
-			finish();
+		}
+	}
+
+	public void bookMarksClicked(View view) {
+		if (notOnline()) {
+			try {
+				new AlertDialog.Builder(MainActivity.this)
+						.setTitle("Error")
+						.setMessage("Internet not available, Please check your internet connectivity and try again later...")
+						.setCancelable(false)
+						.setIcon(android.R.drawable.ic_dialog_alert)
+						.setNeutralButton("OK", (dialog, which) -> finish()).show();
+			} catch (Exception e) {
+				Log.d("Main Activity", "Show Dialog: " + e.getMessage());
+			}
+		}
+		else{
+			Intent intent = new Intent(MainActivity.this, NewsActivity.class);
+			intent.putExtra("type",'A');
+			startActivity(intent);
 		}
 	}
 }

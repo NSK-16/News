@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.news.R;
+import com.example.news.fragments.BookMarksFragment;
 import com.example.news.fragments.BusinessFragment;
 import com.example.news.fragments.EntertainmentFragment;
 import com.example.news.fragments.HealthFragment;
@@ -34,6 +35,8 @@ public class NewsActivity extends AppCompatActivity {
 			case 'B' : fragment = new BusinessFragment();
 						break;
 			case 'E' : fragment = new EntertainmentFragment();
+						break;
+			case 'A' : fragment = new BookMarksFragment();
 						break;
 			default: fragment = new HomeFragment();
 		}
