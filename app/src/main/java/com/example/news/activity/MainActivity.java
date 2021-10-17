@@ -13,6 +13,8 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Toast;
 
 import com.example.news.R;
 import com.example.news.adapters.NewsPagerAdapter;
@@ -34,50 +36,7 @@ public class MainActivity extends AppCompatActivity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-		if (isOnline()) {
-			toolbar = findViewById(R.id.tbCustom);
-			tabLayout = findViewById(R.id.tlCategories); setSupportActionBar(toolbar);
-
-			viewPager2 = findViewById(R.id.vpNews);
-			newsPagerAdapter = new NewsPagerAdapter(getSupportFragmentManager(),getLifecycle());
-			viewPager2.setAdapter(newsPagerAdapter);
-
-
-
-			tabLayoutMediator = new TabLayoutMediator(tabLayout, viewPager2, (tab, position) -> tab.setText(tabTitles[position]));
-			tabLayoutMediator.attach();
-
-			tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-				@Override
-				public void onTabSelected(TabLayout.Tab tab) {
-					viewPager2.setCurrentItem(tab.getPosition());
-
-				}
-
-				@Override
-				public void onTabUnselected(TabLayout.Tab tab) {
-
-				}
-
-				@Override
-				public void onTabReselected(TabLayout.Tab tab) {
-
-				}
-			});
-
-			viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
-				@Override
-				public void onPageSelected(int position) {
-					super.onPageSelected(position);
-					tabLayout.selectTab(tabLayout.getTabAt(position));
-				}
-
-				@Override
-				public void onPageScrollStateChanged(int state) {
-					super.onPageScrollStateChanged(state);
-				}
-			});
-		} else {
+		if (!isOnline()) {
 			try {
 				new AlertDialog.Builder(MainActivity.this)
 						.setTitle("Error")
@@ -109,5 +68,29 @@ public class MainActivity extends AppCompatActivity{
 			return false;
 		}
 		return true;
+	}
+
+	public void homeClicked(View view) {
+		Toast.makeText(this, "You have clicked Home Category", Toast.LENGTH_LONG).show();
+	}
+
+	public void techClicked(View view) {
+		Toast.makeText(this, "You have clicked Technology Category", Toast.LENGTH_LONG).show();
+	}
+
+	public void internationalClicked(View view) {
+		Toast.makeText(this, "You have clicked International Category", Toast.LENGTH_LONG).show();
+	}
+
+	public void sportsClicked(View view) {
+		Toast.makeText(this, "You have clicked Sports Category", Toast.LENGTH_LONG).show();
+	}
+
+	public void healthClicked(View view) {
+		Toast.makeText(this, "You have clicked Health Category", Toast.LENGTH_LONG).show();
+	}
+
+	public void businessClicked(View view) {
+		Toast.makeText(this, "You have clicked Business Category", Toast.LENGTH_LONG).show();
 	}
 }
