@@ -2,10 +2,10 @@
     <!-- Base application theme. -->
     <style name="Theme.News" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/darkGrey</item>
-        <item name="colorPrimaryVariant">@color/lightGrey</item>
+        <item name="colorPrimary">#1FB598</item>
+        <item name="colorPrimaryVariant">#1FB598</item>
         <item name="colorOnPrimary">@color/white</item>
-        <item name="colorSurface">@color/lightGrey</item>
+        <item name="colorSurface">#969793</item>
         <item name="colorOnSurface">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/silver</item>
@@ -15,6 +15,7 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- App Background. -->
         <item name="background">@drawable/background_night</item>
+        <item name="backgroundColor">#8E8989</item>
     </style>
 
 </resources>
