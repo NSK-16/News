@@ -10,8 +10,10 @@
     <color name="lightWhite">#F2F2F2</color>
     <color name="beige">#F1ECC3</color>
     <color name="beigeShade">#FCFFA6</color>
+    <color name="lightGold">#fada5e</color>
     <color name="goldenYellow">#FFDF00</color>
     <color name="schoolBusYellow">#FFD800</color>
+    <color name="goldenShade">#efcc00</color>
     <color name="yellowShade">#FFDE03</color>
     <color name="darkGrey">#121212</color>
     <color name="lightGrey">#212121</color>

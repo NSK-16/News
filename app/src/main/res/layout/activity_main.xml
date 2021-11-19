@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?attr/colorSecondary"
     tools:context=".activity.MainActivity">
 
     <androidx.appcompat.widget.Toolbar
@@ -23,6 +24,12 @@
             android:textStyle="bold"
             android:textColor="?attr/colorOnPrimary"
             />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
     </androidx.appcompat.widget.Toolbar>
 
     <com.google.android.material.tabs.TabLayout
@@ -33,7 +40,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tbCustom"
         android:background="?attr/colorPrimary"
-        app:tabTextColor="?attr/colorSecondary"
+        app:tabTextColor="?attr/colorOnSecondary"
         app:tabSelectedTextColor="?attr/colorOnPrimary"
         app:tabIndicatorColor="?attr/colorOnPrimary"
         app:tabIndicatorHeight="3.5dp"

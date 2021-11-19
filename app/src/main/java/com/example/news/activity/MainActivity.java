@@ -1,8 +1,5 @@
 package com.example.news.activity;
 
-//TODO: * Add a progress bar
-//      * Show "No Internet Connection" message when applicable
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager2.widget.ViewPager2;
