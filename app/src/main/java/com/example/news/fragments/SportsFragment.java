@@ -94,7 +94,7 @@ public class SportsFragment extends Fragment {
 
             @Override
             public void onFailure(@NonNull Call<NewsArticles> call, Throwable t) {
-                Toast.makeText(getContext(),"Something is wrong",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(),"CHECK YOUR INTERNET CONNECTIVITY!",Toast.LENGTH_SHORT).show();
             }
         });
 

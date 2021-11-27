@@ -1,14 +1,22 @@
 package com.example.news.activity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.viewpager2.widget.ViewPager2;
+
+import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+
 import com.example.news.R;
 import com.example.news.adapters.NewsPagerAdapter;
+import com.example.news.data.BookmarkedNews;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
-
 
 public class MainActivity extends AppCompatActivity{
     Toolbar toolbar;
@@ -25,7 +33,8 @@ public class MainActivity extends AppCompatActivity{
         setContentView(R.layout.activity_main);
 
         toolbar = findViewById(R.id.tbCustom);
-        tabLayout = findViewById(R.id.tlCategories); setSupportActionBar(toolbar);
+        setSupportActionBar(toolbar);
+        tabLayout = findViewById(R.id.tlCategories);
 
         viewPager2 = findViewById(R.id.vpNews);
         newsPagerAdapter = new NewsPagerAdapter(getSupportFragmentManager(),getLifecycle());
@@ -66,6 +75,23 @@ public class MainActivity extends AppCompatActivity{
                 super.onPageScrollStateChanged(state);
             }
         });
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.actions,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.action_bookmarks) {
+            Intent intent = new Intent(this, BookMarksActivity.class);
+            startActivity(intent);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
 
     }
 

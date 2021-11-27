@@ -4,9 +4,21 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Courses/Android_Development/Projects/News/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.24270833333333333" />
+        <entry key="..\:/Courses/Android_Development/Projects/News/app/src/main/res/drawable/baseline_bookmark_added_20.xml" value="0.24270833333333333" />
+        <entry key="..\:/Courses/Android_Development/Projects/News/app/src/main/res/drawable/baseline_bookmark_added_24.xml" value="0.24270833333333333" />
+        <entry key="..\:/Courses/Android_Development/Projects/News/app/src/main/res/drawable/baseline_bookmarks_24.xml" value="0.21822916666666667" />
         <entry key="..\:/Courses/Android_Development/Projects/News/app/src/main/res/drawable/ic_launcher_background.xml" value="0.24270833333333333" />
+        <entry key="..\:/Courses/Android_Development/Projects/News/app/src/main/res/drawable/outline_bookmark_add_20.xml" value="0.21822916666666667" />
+        <entry key="..\:/Courses/Android_Development/Projects/News/app/src/main/res/drawable/outline_bookmark_add_24.xml" value="0.21822916666666667" />
+        <entry key="..\:/Courses/Android_Development/Projects/News/app/src/main/res/drawable/outline_no_backpack_24.xml" value="0.21822916666666667" />
+        <entry key="..\:/Courses/Android_Development/Projects/News/app/src/main/res/layout/activity_book_marks.xml" value="0.1" />
         <entry key="..\:/Courses/Android_Development/Projects/News/app/src/main/res/layout/activity_main.xml" value="0.25" />
-        <entry key="..\:/Courses/Android_Development/Projects/News/app/src/main/res/layout/item_news.xml" value="0.13722826086956522" />
+        <entry key="..\:/Courses/Android_Development/Projects/News/app/src/main/res/layout/fragment_book_marks.xml" value="0.20520833333333333" />
+        <entry key="..\:/Courses/Android_Development/Projects/News/app/src/main/res/layout/fragment_business.xml" value="0.10771947527749748" />
+        <entry key="..\:/Courses/Android_Development/Projects/News/app/src/main/res/layout/fragment_health.xml" value="0.1" />
+        <entry key="..\:/Courses/Android_Development/Projects/News/app/src/main/res/layout/fragment_no_bookmarks.xml" value="0.22239583333333332" />
+        <entry key="..\:/Courses/Android_Development/Projects/News/app/src/main/res/layout/item_news.xml" value="0.2" />
+        <entry key="..\:/Courses/Android_Development/Projects/News/app/src/main/res/layout/no_bookmarks.xml" value="0.176" />
         <entry key="..\:/Courses/Android_Development/Projects/News/app/src/main/res/menu-v26/actions.xml" value="0.1" />
         <entry key="..\:/Courses/Android_Development/Projects/News/app/src/main/res/menu/actions.xml" value="0.2" />
         <entry key="..\:/Courses/Android_Development/Projects/News/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.24270833333333333" />

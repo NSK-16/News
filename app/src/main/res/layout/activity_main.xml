@@ -42,8 +42,9 @@
         android:background="?attr/colorPrimary"
         app:tabTextColor="?attr/colorOnSecondary"
         app:tabSelectedTextColor="?attr/colorOnPrimary"
-        app:tabIndicatorColor="?attr/colorOnPrimary"
+        app:tabIndicatorColor="?attr/colorAccent"
         app:tabIndicatorHeight="3.5dp"
+        android:forceDarkAllowed="false"
         app:tabMode="scrollable">
 
     </com.google.android.material.tabs.TabLayout>

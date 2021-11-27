@@ -4,7 +4,7 @@
 
     <item
         android:id="@+id/action_bookmarks"
-        android:icon="@drawable/ic_bookmark"
+        android:icon="@drawable/baseline_bookmarks_black_48"
         android:title="bookmarks"
         app:showAsAction="ifRoom"
         android:iconTint="?attr/colorOnPrimary"/>
